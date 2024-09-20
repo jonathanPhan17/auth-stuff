@@ -10,4 +10,8 @@ Router.get("/login", (req, res) => {
     res.send("Login Route")
 })
 
+Router.get("/logout", (req, res) => {
+  res.send("Logout Route");
+});
+
 export default Router;
