@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import Router from './routes/auth.route.js';
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
 dotenv.config();
 
@@ -13,7 +14,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", Router);
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     connectDB();
-    console.log("Server running on port 3000")
+    console.log(`Server running on ${PORT}`)
 })
