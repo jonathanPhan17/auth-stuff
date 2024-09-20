@@ -6,6 +6,8 @@ import Router from './routes/auth.route.js';
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use(express.json())
+
 dotenv.config();
 
 
