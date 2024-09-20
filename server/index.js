@@ -8,9 +8,6 @@ const PORT = process.env.PORT || 5000;
 
 dotenv.config();
 
-app.get("/", (req, res) => {
-    res.send("sup")
-})
 
 app.use("/api/auth", Router);
 
