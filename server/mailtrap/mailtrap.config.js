@@ -13,17 +13,3 @@ export const sender = {
   address: "hello@demomailtrap.com",
   name: "Max here",
 };
-
-// const recipients = [
-//   "shoxie1999@gmail.com",
-// ];
-
-// transport
-//   .sendMail({
-//     from: sender,
-//     to: recipients,
-//     subject: "I sent you this",
-//     text: "yo",
-//     category: "Integration Test",
-//   })
-//   .then(console.log, console.error);
