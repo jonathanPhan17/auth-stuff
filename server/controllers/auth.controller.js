@@ -3,7 +3,7 @@ import crypto from "crypto";
 import dotenv from "dotenv";
 import { User } from "../models/user.model.js";
 import { generateTokenAndSetCookie } from "../utils/generateTokenAndSetCookie.js";
-import { sendVerificationEmail, sendWelcomeEmail, sendPasswordResetEmail } from "../mailtrap/emails.js";
+import { sendVerificationEmail, sendWelcomeEmail, sendPasswordResetEmail, sendResetSuccessEmail } from "../mailtrap/emails.js";
 
 dotenv.config();
 
@@ -154,7 +154,7 @@ export const resetPassword = async (req, res) => {
   try {
       const { token } = req.params;  
       const { password } = req.body;
-      const user = await user.findOne({
+      const user = await User.findOne({
         resetPasswordToken: token,
         resetPasswordExpiresAt: {$gt: Date.now()}
       })
@@ -175,6 +175,6 @@ export const resetPassword = async (req, res) => {
 
       res.status(200).json({ success: true, message: "password reset successful"});
   } catch (error) {
-    res.status(400).json({ success: false, message: error.message });
+      res.status(400).json({ success: false, message: error.message });
   }
 }
