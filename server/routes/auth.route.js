@@ -9,6 +9,6 @@ Router.post("/login", login);
 
 Router.post("/logout", logout);
 
-Router.post("/verify-email", verifyEmail)
+Router.post("/verify-email", verifyEmail);
 
 export default Router;
