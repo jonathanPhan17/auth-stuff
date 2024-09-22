@@ -1,4 +1,4 @@
-import { VERIFICATION_EMAIL_TEMPLATE, WELCOME_EMAIL_TEMPLATE } from "./emailTemplates.js"
+import { PASSWORD_RESET_REQUEST_TEMPLATE, VERIFICATION_EMAIL_TEMPLATE, WELCOME_EMAIL_TEMPLATE } from "./emailTemplates.js"
 import { sender, transport } from "./mailtrap.config.js"
 
 export const sendVerificationEmail = async (email, verificationToken) => {
@@ -16,7 +16,7 @@ export const sendVerificationEmail = async (email, verificationToken) => {
         console.log("Verification Email sent succesfully", response)
     } catch (error) {
         console.error(`Error sending verification email: ${error}`);
-        throw new Error(`Error sending verification email: ${error}`)
+        throw new Error(`Error sending verification email: ${error}`);
     }
 }
 
@@ -38,3 +38,20 @@ export const sendWelcomeEmail = async (email, name) => {
       throw new Error(`Error sending welcome email: ${error}`);
     }
 };
+
+export const sendPasswordResetEmail = async (email, resetURL) => {
+  const recipient = email;
+
+  try {
+    const response = await transport.sendMail({
+      from: sender,
+      to: recipient,
+      subject: "Reset Password",
+      html: PASSWORD_RESET_REQUEST_TEMPLATE.replace("{resetURL}", resetURL),
+      category: "Reset Password"
+    })
+  } catch (error) {
+    console.error(`Error sending reset password: ${error}`);
+    throw new Error(`Error sending reset password: ${error}`);
+  }
+}
