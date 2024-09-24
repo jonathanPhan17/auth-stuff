@@ -1,17 +1,27 @@
 import { motion } from "framer-motion";
-import { Lock, Mail, User } from "lucide-react";
+import { Lock, Mail, User, Loader } from "lucide-react";
 import { useState } from "react";
 import Input from "../components/Input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PasswordStrengthMeter from "../components/PasswordStrengthMeter";
+import { useAuthStore } from "../store/AuthStore";
 
 const SignUpPage = () => {
   const [name, setName] = useState("");
-  const [mail, setMail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { signup, error, isLoading } = useAuthStore();
+  const navigate = useNavigate();
 
-  const handleSignUp = (event) => {
+  const handleSignUp = async (event) => {
     event.preventDefault();
+
+    try {
+      await signup(email, password, name);
+      navigate("/verify-email");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -22,7 +32,7 @@ const SignUpPage = () => {
       className="max-w-md w-full bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden"
     >
       <div className="p-8">
-        <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-blue-400 to-sky-500 text-transparent bg-clip-text">
+        <h2 className="text-3xl font-bold mb-6 text-center text-white text-transparent bg-clip-text">
           Sign up
         </h2>
         <form onSubmit={handleSignUp}>
@@ -37,8 +47,8 @@ const SignUpPage = () => {
             icon={Mail}
             type="email"
             placeholder="Email"
-            value={mail}
-            onChange={(e) => setMail(e.target.value)}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <Input
             icon={Lock}
@@ -47,7 +57,8 @@ const SignUpPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <PasswordStrengthMeter password={password}/>
+          {error && <p className="text-red-500 font-semibold mt-2">{error}</p>}
+          <PasswordStrengthMeter password={password} />
           <motion.button
             className="mt-5 w-full py-3 px-4 bg-sky-600 text-white font-bold rounded-lg shadow-lg 
             hover:bg-blue-700 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-blue-600 
@@ -55,8 +66,13 @@ const SignUpPage = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
+            disabled={isLoading}
           >
-            Create your account
+            {isLoading ? (
+              <Loader className="animate-spin mx-auto" size={24} />
+            ) : (
+              "Create your account"
+            )}
           </motion.button>
         </form>
       </div>
