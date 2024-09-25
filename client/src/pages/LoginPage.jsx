@@ -3,15 +3,18 @@ import { motion } from "framer-motion";
 import { Mail, Lock, Loader } from "lucide-react";
 import { Link } from "react-router-dom";
 import Input from "../components/Input"
+import { useAuthStore } from "../store/AuthStore";
 
 const LoginPage = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const isLoading = false;
 
-  const handleLogin = (e) => {
-    e.prevenDefault();
+  const { login, isLoading, error } = useAuthStore();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    await login(email, password);
   }
 
   return (
@@ -48,6 +51,7 @@ const LoginPage = () => {
               Forgot Password?
             </Link>
           </div>
+          {error && <p className="text-red-500 text-center font-semibold mb-2">{error}</p>}
           <motion.button
             className="mt-5 w-full py-3 px-4 bg-sky-600 text-white font-bold rounded-lg shadow-lg 
             hover:bg-blue-700 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-blue-600 
