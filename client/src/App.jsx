@@ -1,5 +1,6 @@
 import FloatinStuff from './components/FloatinStuff';
 import { Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 
 
 // Pages
@@ -49,6 +50,7 @@ function App() {
           <Route path='/login' element={<LoginPage />} />
           <Route path='/verify-email' element={<EmailVerificationPage />} />
         </Routes>
+        <Toaster position='bottom-center'/>
       </div>
     </>
   );
