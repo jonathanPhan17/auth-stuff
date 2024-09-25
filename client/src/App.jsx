@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import FloatinStuff from './components/FloatinStuff';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { useAuthStore } from './store/AuthStore';
@@ -11,6 +10,11 @@ import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
 import EmailVerificationPage from './pages/EmailVerificationPage'; 
 import DashBoardPage from './pages/DashBoardPage';
+
+// Components
+import FloatinStuff from './components/FloatinStuff';
+import LoadingSpinner from './components/LoadingSpinner';
+
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, user } = useAuthStore();
@@ -44,6 +48,7 @@ function App() {
     checkAuth()
   }, [checkAuth]);
 
+  if (isCheckingAuth) return <LoadingSpinner />
 
   return (
     <>
