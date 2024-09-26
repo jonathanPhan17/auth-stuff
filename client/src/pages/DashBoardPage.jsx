@@ -4,10 +4,10 @@ import { formatDate } from '../utils/date'
 
 const DashBoardPage = () => {
 
-  const { user } = useAuthStore(); 
+  const { user, logout } = useAuthStore(); 
 
   const handleLogout = () => {
-
+    logout();
   }
 
   return (
