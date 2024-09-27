@@ -41,6 +41,7 @@ export const sendWelcomeEmail = async (email) => {
 
 export const sendPasswordResetEmail = async (email, resetURL) => {
   const recipient = email;
+  
 
   try {
     const response = await transport.sendMail({
