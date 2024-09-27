@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage';
 import EmailVerificationPage from './pages/EmailVerificationPage'; 
 import DashBoardPage from './pages/DashBoardPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 
 // Components
 import FloatinStuff from './components/FloatinStuff';
@@ -112,6 +113,9 @@ function App() {
           <Route path="/verify-email" element={<EmailVerificationPage />} />
           <Route path="/forgot-password" element={<RedirectAuthenticatedUser>
             <ForgotPasswordPage />
+          </RedirectAuthenticatedUser>} />
+          <Route path='/reset-password/:token' element={<RedirectAuthenticatedUser>
+            <ResetPasswordPage />
           </RedirectAuthenticatedUser>} />
         </Routes>
         <Toaster position="bottom-center" />
