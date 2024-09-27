@@ -62,7 +62,7 @@ const ForgotPasswordPage = () => {
           <div className="text-center">
             <motion.div
               initial={{ scale: 0 }}
-              animation={{ scale: 1 }}
+              animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 500, damping: 30 }}
               className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4"
             >
