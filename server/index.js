@@ -20,5 +20,4 @@ app.use("/api/auth", Router);
 
 app.listen(PORT, () => {
     connectDB();
-    console.log(`Server running on ${PORT}`)
 })
