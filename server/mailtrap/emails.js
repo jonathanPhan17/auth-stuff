@@ -39,8 +39,11 @@ export const sendWelcomeEmail = async (email) => {
     }
 };
 
-export const sendPasswordResetEmail = async (email, resetURL) => {
+export const sendPasswordResetEmail = async (email, token) => {
   const recipient = email;
+  const CLIENT_URL = process.env.CLIENT_URL;
+
+  const resetURL = `${CLIENT_URL}/reset-password/${token}`;
   
 
   try {
