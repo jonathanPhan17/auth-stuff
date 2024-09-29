@@ -39,12 +39,9 @@ export const sendWelcomeEmail = async (email) => {
     }
 };
 
-export const sendPasswordResetEmail = async (email, token) => {
+export const sendPasswordResetEmail = async (email, resetURL) => {
   const recipient = email;
-  const CLIENT_URL = process.env.CLIENT_URL;
 
-  const resetURL = `${CLIENT_URL}/reset-password/${token}`;
-  
 
   try {
     const response = await transport.sendMail({
