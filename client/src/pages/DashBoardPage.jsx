@@ -62,7 +62,7 @@ const DashBoardPage = () => {
       >
         <motion.button
           whileHover={{ scale: 1.05 }}
-          WhileTap={{ scale: 0.95 }}
+          whileTap={{ scale: 0.95 }}
           onClick={handleLogout}
           className="w-full py-4 px-4 bg-sky-600 text-white font-bold rounded-lg shadow-lg 
             hover:bg-blue-700 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-blue-600 

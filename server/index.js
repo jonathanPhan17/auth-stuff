@@ -16,7 +16,7 @@ app.use(cookieParser());
 dotenv.config();
 
 
-app.use("/api/auth", Router);
+app.use(Router);
 
 app.listen(PORT, () => {
     connectDB();
